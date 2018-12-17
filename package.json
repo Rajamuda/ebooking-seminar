@@ -1,6 +1,6 @@
 {
-  "name": "IPB Seminar e-Booking",
-  "version": "0.0.0",
+  "name": "seminar-e-booking",
+  "version": "0.0.1",
   "description": "An app for IPB Postgraduate student to book seminars more easly",
   "license": "Apache-2.0",
   "scripts": {
