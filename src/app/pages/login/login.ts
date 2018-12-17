@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { UserData } from '../../providers/user-data';
 
 import { UserOptions } from '../../interfaces/user-options';
-
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -20,15 +20,20 @@ export class LoginPage {
 
   constructor(
     public userData: UserData,
-    public router: Router
+    public router: Router,
+    public http: HttpClient
   ) { }
 
   onLogin(form: NgForm) {
     this.submitted = true;
 
     if (form.valid) {
-      this.userData.login(this.login.username);
-      this.router.navigateByUrl('/app/tabs/(schedule:schedule)');
+      this.http.get(this.userData.LDAP_URL+'?username='+this.login.username+'&password='+this.login.password)
+        .subscribe(data => {
+          console.log(data); 
+          this.userData.login(data);
+          this.router.navigateByUrl('/app/tabs/(schedule:schedule)');
+        });
     }
   }
 

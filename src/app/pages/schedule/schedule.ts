@@ -23,6 +23,7 @@ export class SchedulePage {
   shownSessions: any = [];
   groups: any = [];
   confDate: string;
+  username: string;
 
   constructor(
     public alertCtrl: AlertController,
@@ -39,6 +40,10 @@ export class SchedulePage {
     this.updateSchedule();
   }
 
+  ngAfterViewInit() {
+    this.getUsername();
+  }
+
   updateSchedule() {
     // Close any open sliding items when the schedule updates
     if (this.scheduleList) {
@@ -49,6 +54,12 @@ export class SchedulePage {
       this.shownSessions = data.shownSessions;
       this.groups = data.groups;
     });
+  }
+
+  getUsername() {
+    this.user.getUsername().then((username) => {
+      this.username = username;
+    })
   }
 
   async presentFilter() {

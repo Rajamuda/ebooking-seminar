@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +9,8 @@ export class UserData {
   _favorites: string[] = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
+  BASE_URL = 'http://localhost:7003';
+  LDAP_URL = 'http://152.118.76.5/ldap_auth.php';
 
   constructor(
     public events: Events,
@@ -31,9 +32,11 @@ export class UserData {
     }
   }
 
-  login(username: string): Promise<any> {
+  login(data: any): Promise<any> {
     return this.storage.set(this.HAS_LOGGED_IN, true).then(() => {
-      this.setUsername(username);
+      this.setUsername(data.username);
+      this.setMahasiswa(data);
+
       return this.events.publish('user:login');
     });
   }
@@ -55,6 +58,10 @@ export class UserData {
 
   setUsername(username: string): Promise<any> {
     return this.storage.set('username', username);
+  }
+
+  setMahasiswa(mahasiswa: any): Promise<any> {
+    return this.storage.set('mahasiswa', mahasiswa);
   }
 
   getUsername(): Promise<string> {
