@@ -41,7 +41,8 @@ export class SchedulePage {
   }
 
   ngAfterViewInit() {
-    this.getUsername();
+    // this.getUsername();
+    // this.getMahasiswa();
   }
 
   updateSchedule() {
@@ -56,11 +57,11 @@ export class SchedulePage {
     });
   }
 
-  getUsername() {
-    this.user.getUsername().then((username) => {
-      this.username = username;
-    })
-  }
+  // getMahasiswa() {
+  //   this.user.getMahasiswa().then((username) => {
+  //     this.username = username;
+  //   });
+  // }
 
   async presentFilter() {
     const modal = await this.modalCtrl.create({

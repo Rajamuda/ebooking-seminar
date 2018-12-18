@@ -25,10 +25,10 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div style="background-color: #fff" *ngIf="username"> 
+<!--   <div style="background-color: #fff" *ngIf="username"> 
     {{username}} 
-  </div>
-  <!-- <ion-list #scheduleList [hidden]="shownSessions === 0">
+  </div> -->
+  <ion-list #scheduleList [hidden]="shownSessions === 0">
     <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
       <ion-item-divider sticky>
         <ion-label>
@@ -60,7 +60,7 @@
   <ion-list-header [hidden]="shownSessions > 0">
     No Sessions Found
   </ion-list-header>
- -->
+
   <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
     <ion-fab-button><ion-icon name="share"></ion-icon></ion-fab-button>
     <ion-fab-list side="top">

@@ -32,7 +32,7 @@ export class LoginPage {
         .subscribe(data => {
           console.log(data); 
           this.userData.login(data);
-          this.router.navigateByUrl('/app/tabs/(schedule:schedule)');
+          this.router.navigateByUrl('/app/tabs/(home:home)');
         });
     }
   }

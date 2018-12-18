@@ -5,6 +5,7 @@ import { TabsPage } from './tabs-page';
 
 import { AboutPage } from '../about/about';
 import { MapPage } from '../map/map';
+import { HomePage } from '../home/home';
 import { SchedulePage } from '../schedule/schedule';
 import { SessionDetailPage } from '../session-detail/session-detail';
 import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
@@ -17,6 +18,11 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       // tab one
+      {
+        path: 'home',
+        component: HomePage,
+        outlet: 'home'
+      },
       {
         path: 'schedule',
         component: SchedulePage,

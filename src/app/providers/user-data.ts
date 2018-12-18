@@ -70,6 +70,12 @@ export class UserData {
     });
   }
 
+  getMahasiswa(): Promise<any> {
+    return this.storage.get('mahasiswa').then((value) => {
+      return value;
+    });
+  }
+
   isLoggedIn(): Promise<boolean> {
     return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
       return value === true;

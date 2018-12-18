@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> -->
+    <ion-title>Beranda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card"> 
+    Selamat Datang, <br/>
+    <div class="text-grey" *ngIf="mahasiswa">{{ mahasiswa.name }} ({{ mahasiswa.nim }})</div>
+  </div>
+
+  <div class="card">
+    <div class="text-center"><h4>Cari Jadwal Seminar</h4></div>
+    <form #seminarSearchForm="ngForm" novalidate>
+      <ion-item>
+        <ion-label position="stacked" color="primary">Dari Tanggal</ion-label>
+        <ion-datetime displayFormat="DDDD, D MMMM YYYY" [(ngModel)]="seminar.from_date" min="2018" max="2019" name="from_date" #form_date="ngModel" required>
+        </ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Sampai Tanggal</ion-label>
+        <ion-datetime displayFormat="DDDD, D MMMM YYYY" [(ngModel)]="seminar.to_date" min="2018" max="2019" name="to_date" #form_date="ngModel" required>
+        </ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Bidang Keilmuan</ion-label>
+        <ion-select [(ngModel)]="seminar.field" name="field" #field="ngModel" placeholder="Pilih bidang Keilmuan" multiple="true">
+          <ion-select-option value="tumbuhan">Tumbuhan</ion-select-option>
+          <ion-select-option value="hewan">Hewan</ion-select-option>
+          <ion-select-option value="sosial">Sosial</ion-select-option>
+          <ion-select-option value="teknik">Teknik</ion-select-option>
+          <ion-select-option value="ekonomi">Ekonomi</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+       <ion-row responsive-sm>
+        <ion-col>
+          <ion-button (click)="searchSeminar(seminarSearchForm)" type="submit" expand="block">Cari</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+    <ion-fab-button><ion-icon name="share"></ion-icon></ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="google" (click)="openSocial('Google+', fab)">
+        <ion-icon name="logo-googleplus"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
