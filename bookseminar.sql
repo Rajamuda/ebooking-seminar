@@ -9,7 +9,7 @@ CREATE TABLE Keilmuan (
 CREATE TABLE Ruangan (
                 Kode_ruangan INT NOT NULL,
                 Lokasi_ruangan VARCHAR NOT NULL,
-                Kuota VARCHAR NOT NULL,
+                Kuota INT NOT NULL,
                 PRIMARY KEY (Kode_ruangan)
 );
 
@@ -25,13 +25,13 @@ CREATE TABLE Dosen (
 
 CREATE TABLE Seminar (
                 id_seminar INT AUTO_INCREMENT NOT NULL,
-                id_doesn INT NOT NULL,
+                id_dosen INT NOT NULL,
                 Kode_ruangan INT NOT NULL,
                 Kode_keilmuan INT NOT NULL,
                 Waktu VARCHAR NOT NULL,
                 Ruangan VARCHAR NOT NULL,
                 Judul VARCHAR NOT NULL,
-                PRIMARY KEY (id_seminar, id_doesn, Kode_ruangan, Kode_keilmuan)
+                PRIMARY KEY (id_seminar, id_dosen, Kode_ruangan, Kode_keilmuan)
 );
 
 
@@ -48,8 +48,8 @@ CREATE TABLE Mahasiswa (
 CREATE TABLE Daftar_seminar (
                 id_mahasiswa INT NOT NULL,
                 id_seminar INT NOT NULL,
-                id_doesn INT NOT NULL,
-                PRIMARY KEY (id_mahasiswa, id_seminar, id_doesn)
+                id_dosen INT NOT NULL,
+                PRIMARY KEY (id_mahasiswa, id_seminar, id_dosen)
 );
 
 
@@ -66,14 +66,14 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE Seminar ADD CONSTRAINT dosen_seminar_fk
-FOREIGN KEY (id_doesn)
+FOREIGN KEY (id_dosen)
 REFERENCES Dosen (id_dosen)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE Daftar_seminar ADD CONSTRAINT seminar_daftar_seminar_fk
-FOREIGN KEY (id_seminar, id_doesn)
-REFERENCES Seminar (id_seminar, id_doesn)
+FOREIGN KEY (id_seminar, id_dosen)
+REFERENCES Seminar (id_seminar, id_dosen)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
