@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19 Des 2018 pada 17.05
--- Versi Server: 10.1.10-MariaDB
--- PHP Version: 5.6.19
+-- Generation Time: 20 Des 2018 pada 04.59
+-- Versi Server: 10.1.24-MariaDB
+-- PHP Version: 7.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bookseminar`
+-- Database: `bokingseminar`
 --
 
 -- --------------------------------------------------------
@@ -31,6 +33,17 @@ CREATE TABLE `daftar_seminar` (
   `id_seminar` int(100) NOT NULL,
   `id_dosen` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `daftar_seminar`
+--
+
+INSERT INTO `daftar_seminar` (`id_mahasiswa`, `id_seminar`, `id_dosen`) VALUES
+(3, 0, 0),
+(4, 0, 0),
+(4, 0, 0),
+(5, 0, 0),
+(3, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -72,11 +85,11 @@ CREATE TABLE `keilmuan` (
 --
 
 INSERT INTO `keilmuan` (`Kode_keilmuan`, `Bidang_keilmuan`) VALUES
-(9, 'kelautan'),
-(78, 'keteknikan'),
-(456, 'perencanaan'),
-(678, 'ekonomi dan manajemen'),
-(897, 'hewan dan tumbuhan');
+(1, 'kelautan'),
+(2, 'keteknikan'),
+(3, 'perencanaan'),
+(4, 'ekonomi dan manajemen'),
+(5, 'hewan dan tumbuhan');
 
 -- --------------------------------------------------------
 
@@ -86,6 +99,7 @@ INSERT INTO `keilmuan` (`Kode_keilmuan`, `Bidang_keilmuan`) VALUES
 
 CREATE TABLE `mahasiswa` (
   `id_mahasiswa` int(100) NOT NULL,
+  `password` varchar(225) NOT NULL,
   `NIM` varchar(100) NOT NULL,
   `Nama` varchar(100) NOT NULL,
   `Fakultas` varchar(100) NOT NULL,
@@ -96,12 +110,12 @@ CREATE TABLE `mahasiswa` (
 -- Dumping data untuk tabel `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id_mahasiswa`, `NIM`, `Nama`, `Fakultas`, `Jurusan`) VALUES
-(1, 'G651180401', 'Global Ilham Sampurno', 'Mipa', 'Ilmu komputer'),
-(2, 'G651180200', 'muhammad dhani', 'mipa', 'ilmu komputer'),
-(3, 'A651180888', 'ahmad budi', 'ekonomi', 'ekonomi pertanian'),
-(4, 'B651180221', 'budianti', 'kedokteran', 'dokter hewan'),
-(5, 'G451180800', 'andini', 'mipa', 'biologi');
+INSERT INTO `mahasiswa` (`id_mahasiswa`, `password`, `NIM`, `Nama`, `Fakultas`, `Jurusan`) VALUES
+(1, '123', 'G651180401', 'Global Ilham Sampurno', 'mipa', 'Ilmu komputer'),
+(2, '234', 'G651180200', 'muhammad dhani', 'mipa', 'ilmu komputer'),
+(3, '123', 'A651180888', 'ahmad budi', 'ekonomi', 'ekonomi pertanian'),
+(4, '123', 'B651180221', 'budianti', 'kedokteran', 'dokter hewan'),
+(5, '1234', 'G451180800', 'andini', 'mipa', 'biologi');
 
 -- --------------------------------------------------------
 
@@ -137,10 +151,20 @@ CREATE TABLE `seminar` (
   `id_dosen` int(100) NOT NULL,
   `Kode_ruangan` int(100) NOT NULL,
   `Kode_keilmuan` int(100) NOT NULL,
-  `Waktu` varchar(100) NOT NULL,
-  `Ruangan` varchar(100) NOT NULL,
+  `Waktu` time NOT NULL,
   `Judul` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `seminar`
+--
+
+INSERT INTO `seminar` (`id_seminar`, `id_dosen`, `Kode_ruangan`, `Kode_keilmuan`, `Waktu`, `Judul`) VALUES
+(1, 5, 102, 1, '07:30:00', 'pengaruh penggunaan pupuk dalam pakan ternak'),
+(2, 5, 102, 4, '07:30:00', 'pengaruh ekonomi makro  kepada mahasiswa'),
+(3, 3, 402, 3, '14:30:00', 'perencanaan IPB farm 4.0'),
+(4, 3, 202, 1, '08:17:00', 'pengaruh pakan terhadap warna ikan '),
+(5, 3, 402, 3, '14:00:00', 'perencanaan wilayah fmipa mendukung pertanian 4.0');
 
 --
 -- Indexes for dumped tables
@@ -200,6 +224,11 @@ ALTER TABLE `dosen`
 ALTER TABLE `mahasiswa`
   MODIFY `id_mahasiswa` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT for table `seminar`
+--
+ALTER TABLE `seminar`
+  MODIFY `id_seminar` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
@@ -216,6 +245,7 @@ ALTER TABLE `seminar`
   ADD CONSTRAINT `dosen_seminar_fk` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_dosen`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `keilmuan_seminar_fk` FOREIGN KEY (`Kode_keilmuan`) REFERENCES `keilmuan` (`Kode_keilmuan`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `ruangan_seminar_fk` FOREIGN KEY (`Kode_ruangan`) REFERENCES `ruangan` (`Kode_ruangan`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
