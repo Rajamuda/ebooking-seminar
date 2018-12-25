@@ -8,6 +8,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'search/:fromDate/:toDate/:field',
+    loadChildren: './pages/search/search.module#SearchModule'
+  },
+  {
     path: 'account',
     loadChildren: './pages/account/account.module#AccountModule'
   },

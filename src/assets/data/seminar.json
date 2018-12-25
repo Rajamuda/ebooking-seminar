@@ -1,0 +1,51 @@
+{
+	"teknik": [{
+		"date": "Senin, 21 Januari 2019",
+		"ruangan": "RK Pasca 3.01",
+		"list": [{
+			"judul": "Lorem Ipsum 1",
+			"pemrasaran": "Person 1",
+			"nim": "A0201923918",
+			"pembimbing": ["Dr. F5", "Prof. Dr. G2", ""],
+			"moderator": "Dr. 4",
+			"kuota": "40",
+			"terisi": "12",
+			"jam": "08.30 - 09.30"
+		}, {
+			"judul": "Lorem Ipsum 2",
+			"pemrasaran": "Person 2",
+			"nim": "B1221512991",
+			"pembimbing": ["Dr. A1", "Prof. Dr. B2", ""],
+			"moderator": "Dr. 4",
+			"kuota": "40",
+			"terisi": "12",
+			"jam": "09.30 - 10.30"
+		}]	
+	}, {
+		"date": "Kamis, 24 Januari 2019",
+		"ruangan": "RK Pasca 3.01",
+		"list": [{
+			"judul": "Lorem Ipsum 21",
+			"pemrasaran": "Person 21",
+			"nim": "A0201923918",
+			"pembimbing": ["Dr. T1", "Prof. Dr. V2", ""],
+			"moderator": "Dr. 8",
+			"kuota": "40",
+			"terisi": "12",
+			"jam": "09.30 - 10.30"
+		}, {
+			"judul": "Lorem Ipsum 2",
+			"pemrasaran": "Person 2",
+			"nim": "B1221512991",
+			"pembimbing": ["Dr. A3", "Prof. Dr. B5", ""],
+			"moderator": "Dr. 8",
+			"kuota": "40",
+			"terisi": "12",
+			"jam": "10.30 - 11.30"
+		}]
+	}],
+	"tumbuhan": [],
+	"hewan": [],
+	"sosial": [],
+	"ekonomi": []
+}

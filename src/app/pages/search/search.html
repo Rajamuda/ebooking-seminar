@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/app/tabs/(home:home)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Hasil Pencarian</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="segment" (ionChange)="changeField()" scrollable>
+      <ion-segment-button value="teknik">
+        Teknik ({{this.count.teknik}})
+      </ion-segment-button>
+      <ion-segment-button value="tumbuhan">
+        Tumbuhan ({{this.count.tumbuhan}})
+      </ion-segment-button>
+      <ion-segment-button value="hewan">
+        Hewan ({{this.count.hewan}})
+      </ion-segment-button>
+      <ion-segment-button value="sosial">
+        Sosial ({{this.count.sosial}})
+      </ion-segment-button>
+      <ion-segment-button value="ekonomi">
+        Ekonomi ({{this.count.ekonomi}})
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="seminar_data">
+    <ion-item-group *ngFor="let seminar of seminar_data">
+      <ion-item-divider sticky>
+        <ion-label>
+          {{seminar.date}}
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-card *ngFor="let detail of seminar.list">
+        <div class="list-info">{{ seminar.ruangan }} | {{ detail.jam }}</div>
+        <ion-card-header>
+          <ion-card-title>{{ detail.judul }}</ion-card-title>
+          <div class="title-grey">{{ detail.pemrasaran }} ({{ detail.nim }})</div>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Kontent</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+    <ion-fab-button><ion-icon name="share"></ion-icon></ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="google" (click)="openSocial('Google+', fab)">
+        <ion-icon name="logo-googleplus"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

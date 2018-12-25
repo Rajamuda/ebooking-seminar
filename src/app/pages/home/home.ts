@@ -19,7 +19,10 @@ export class HomePage {
   seminar: SeminarOptions = {from_date: new Date().toISOString(), to_date: new Date().toISOString(), field: ''};
   min_date: string;
   max_date: string;
-  date_isset: boolean = false;
+  data_isset: boolean = false;
+  date_permitted: string;
+  year_permitted: number;
+  submitted: boolean = false;
 
   constructor(
     public alertCtrl: AlertController,
@@ -33,25 +36,48 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.setSeminarDate();
+    this.getMahasiswa();
   }
 
   ngAfterViewInit() {
-    this.getMahasiswa();
   }
 
   async getMahasiswa() {
     this.mahasiswa = await this.user.getMahasiswa();
+    console.log(this.mahasiswa);
+    this.data_isset = true;
   }
 
   setSeminarDate() {
     const now = new Date();
     this.seminar.from_date = new Date(now.setDate(now.getDate()+7)).toISOString();
+    this.date_permitted = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()
+    this.year_permitted = now.getFullYear()+1;
     this.seminar.to_date = new Date(now.setDate(now.getDate()+7)).toISOString();
-    this.date_isset = true;
+  }
+
+  isValidDate(date) {
+    const current = new Date(date);
+
+    if(current < new Date(this.date_permitted)){
+      return false;
+    }
+
+    if(current.getFullYear() > this.year_permitted){
+      return false;
+    }
+
+    return true;
   }
 
   searchSeminar(form: NgForm) {
-    console.log(form);
+    if(form.valid){
+      console.log(form);
+      let from = new Date(this.seminar.from_date).getTime();
+      let to = new Date(this.seminar.to_date).getTime();
+      this.router.navigateByUrl(`/search/${from}/${to}/${this.seminar.field}`);
+    }
+
   }
 
 }

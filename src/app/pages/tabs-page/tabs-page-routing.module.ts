@@ -6,6 +6,7 @@ import { TabsPage } from './tabs-page';
 import { AboutPage } from '../about/about';
 import { MapPage } from '../map/map';
 import { HomePage } from '../home/home';
+import { SeminarSayaPage } from '../seminar-saya/seminar-saya';
 import { SchedulePage } from '../schedule/schedule';
 import { SessionDetailPage } from '../session-detail/session-detail';
 import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
@@ -34,6 +35,11 @@ const routes: Routes = [
         outlet: 'schedule'
       },
       // tab two
+      {
+        path: 'seminar-saya',
+        component: SeminarSayaPage,
+        outlet: 'seminar-saya'
+      },
       {
         path: 'speakers',
         component: SpeakerListPage,

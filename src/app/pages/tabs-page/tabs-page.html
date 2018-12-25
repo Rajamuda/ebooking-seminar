@@ -1,14 +1,19 @@
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">
+    <!-- <ion-tab-button tab="schedule" href="/app/tabs/(schedule:schedule)">
+      <ion-icon name="time"></ion-icon>
+      <ion-label>Jadwal</ion-label>
+    </ion-tab-button> -->
+
     <ion-tab-button tab="home" href="/app/tabs/(home:home)">
       <ion-icon name="home"></ion-icon>
       <ion-label>Beranda</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="speakers" href="/app/tabs/(speakers:speakers)">
-      <ion-icon name="contacts"></ion-icon>
-      <ion-label>Speakers</ion-label>
+    <ion-tab-button tab="seminar-saya" href="/app/tabs/(seminar-saya:seminar-saya)">
+      <ion-icon name="list-box"></ion-icon>
+      <ion-label>Seminar Saya</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="map" href="/app/tabs/(map:map)">
@@ -22,12 +27,16 @@
     </ion-tab-button>
   </ion-tab-bar>
 
+ <!--  <ion-tab tab="schedule">
+    <ion-router-outlet name="schedule"></ion-router-outlet>
+  </ion-tab> -->
+
   <ion-tab tab="home">
     <ion-router-outlet name="home"></ion-router-outlet>
   </ion-tab>
 
-  <ion-tab tab="speakers">
-    <ion-router-outlet name="speakers"></ion-router-outlet>
+  <ion-tab tab="seminar-saya">
+    <ion-router-outlet name="seminar-saya"></ion-router-outlet>
   </ion-tab>
 
   <ion-tab tab="map">
